@@ -504,6 +504,11 @@ summary:focus-visible {
     line-height: 1.4;
 }
 
+/* 대분류 페이지의 카테고리 섹션 간격*/
+.youtube-category-section {
+    margin-top: 70px;
+}
+
 
 /* 콘텐츠 목록 페이지에서 사용할 공통 영역 */
 
@@ -735,6 +740,10 @@ summary:focus-visible {
 
         font-size: 14px;
     }
+
+    .youtube-category-section {
+        margin-top: 50px;
+    } 
 }
 
 

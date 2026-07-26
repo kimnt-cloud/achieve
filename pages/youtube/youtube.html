@@ -1,10 +1,333 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empty Page</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ATEEZ YouTube 콘텐츠 아카이브"
+    >
+
+    <title>YouTube | Ateez Archive</title>
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/style.css"
+    >
 </head>
-<body>
+
+<body data-root-path="../../">
+    <!-- 상단 헤더 -->
+    <header class="site-header">
+        <button
+            id="menuButton"
+            class="icon-button"
+            type="button"
+            aria-label="카테고리 메뉴 열기"
+            aria-controls="sidebar"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+        <a
+            class="site-title"
+            href="../../index.html"
+        >
+            Ateez Archive
+        </a>
+
+        <button
+            id="searchButton"
+            class="icon-button"
+            type="button"
+            aria-label="검색 열기"
+        >
+            🔍
+        </button>
+    </header>
+
+
+    <!-- sidebar.html이 삽입되는 위치 -->
+    <div id="sidebarComponent"></div>
+
+
+    <!-- 사이드바가 열렸을 때 배경을 어둡게 처리 -->
+    <button
+        id="pageOverlay"
+        class="page-overlay"
+        type="button"
+        aria-label="카테고리 메뉴 닫기"
+        tabindex="-1"
+    ></button>
+
+
+    <!-- YouTube 페이지 배너 -->
+    <section class="main-banner">
+        <div class="banner-content">
+            <p class="banner-label">
+                ATEEZ ARCHIVE
+            </p>
+
+            <h1>
+                YouTube
+            </h1>
+
+            <p>
+                Original Content &amp; External Content
+            </p>
+        </div>
+    </section>
+
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <!-- Original Content -->
+        <section
+            class="category-section"
+            aria-labelledby="originalContentTitle"
+        >
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">
+                        YOUTUBE
+                    </p>
+
+                    <h2 id="originalContentTitle">
+                        Original Content
+                    </h2>
+                </div>
+            </div>
+
+
+            <div class="category-grid">
+                <!-- Wanteez -->
+                <a
+                    class="category-card"
+                    href="original-content/wanteez/wanteez.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Wanteez
+                    </strong>
+                </a>
+
+
+                <!-- Log Book -->
+                <a
+                    class="category-card"
+                    href="original-content/log-book/log-book.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Log Book
+                    </strong>
+                </a>
+
+
+                <!-- Fever Road -->
+                <a
+                    class="category-card"
+                    href="original-content/fever-road/fever-road.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Fever Road
+                    </strong>
+                </a>
+
+
+                <!-- A to Z -->
+                <a
+                    class="category-card"
+                    href="original-content/a-to-z/a-to-z.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        A to Z
+                    </strong>
+                </a>
+
+
+                <!-- Special Clip -->
+                <a
+                    class="category-card"
+                    href="original-content/special-clip/special-clip.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Special Clip
+                    </strong>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- External Content -->
+        <section
+            class="category-section youtube-category-section"
+            aria-labelledby="externalContentTitle"
+        >
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">
+                        YOUTUBE
+                    </p>
+
+                    <h2 id="externalContentTitle">
+                        External Content
+                    </h2>
+                </div>
+            </div>
+
+
+            <div class="category-grid">
+                <!-- 1N2D -->
+                <a
+                    class="category-card"
+                    href="external-content/1n2d/1n2d.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        1N2D
+                    </strong>
+                </a>
+
+
+                <!-- Idol Human Docu -->
+                <a
+                    class="category-card"
+                    href="external-content/idol-human-docu/idol-human-docu.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Idol Human Docu
+                    </strong>
+                </a>
+
+
+                <!-- 9트쫑 -->
+                <a
+                    class="category-card"
+                    href="external-content/9teez/9teez.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        9트쫑
+                    </strong>
+                </a>
+
+
+                <!-- ATEEZ+ -->
+                <a
+                    class="category-card"
+                    href="external-content/ateez-plus/ateez-plus.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        ATEEZ+
+                    </strong>
+                </a>
+
+
+                <!-- Dingo -->
+                <a
+                    class="category-card"
+                    href="external-content/dingo/dingo.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Dingo
+                    </strong>
+                </a>
+
+
+                <!-- Etc. -->
+                <a
+                    class="category-card"
+                    href="external-content/etc/etc.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        Etc.
+                    </strong>
+                </a>
+            </div>
+        </section>
+    </main>
+
+
+    <script src="../../assets/js/script.js"></script>
 </body>
 </html>
