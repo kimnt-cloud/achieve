@@ -1,22 +1,297 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ateez Achieve</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
 
-  <body>
-    <h1>Ateez Achieve</h1>
-    <div class="gallery">
-      <a href="#">유튜브</a>
-      <a href="#">라디오</a>
-      <a href="#">방송</a>
-      <a href="#">라이브</a>
-      <a href="#">유니버스</a>
-      <a href="#">공연</a>
-      <a href="#">앨범</a>
-    </div>
-  </body>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ateez Achieve</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 상단 헤더 -->
+    <header class="site-header">
+        <button
+            id="menuButton"
+            class="icon-button"
+            type="button"
+            aria-label="카테고리 메뉴 열기"
+        >
+            ☰
+        </button>
+
+        <a class="site-title" href="index.html">
+            Ateez Achieve
+        </a>
+
+        <button
+            id="searchButton"
+            class="icon-button"
+            type="button"
+            aria-label="검색 열기"
+        >
+            🔍
+        </button>
+    </header>
+
+
+    <!-- 왼쪽 슬라이드 메뉴 -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <strong>Category</strong>
+
+            <button
+                id="closeMenuButton"
+                class="close-button"
+                type="button"
+                aria-label="카테고리 메뉴 닫기"
+            >
+                ×
+            </button>
+        </div>
+
+        <nav class="sidebar-navigation">
+
+            <a href="#" class="sidebar-main-link">
+                Home
+            </a>
+
+            <details>
+                <summary>Youtube</summary>
+
+                <div class="sidebar-submenu">
+                    <strong>Original Content</strong>
+                    <a href="#">Wanteez</a>
+                    <a href="#">log book</a>
+                    <a href="#">Fever Road</a>
+                    <a href="#">A to Z</a>
+                    <a href="#">Special Clip</a>
+
+                    <strong>External Content</strong>
+                    <a href="#">1N2D</a>
+                    <a href="#">Idol Human Dacu</a>
+                    <a href="#">9트쫑</a>
+                    <a href="#">ATEEZ+</a>
+                    <a href="#">Dingo</a>
+                    <a href="#">Etc.</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Radio</summary>
+
+                <div class="sidebar-submenu">
+                    <a href="#">Idol Radio</a>
+                    <a href="#">Etc.</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Show</summary>
+
+                <div class="sidebar-submenu">
+                    <strong>Reality</strong>
+                    <a href="#">ATEEZ WANTED</a>
+                    <a href="#">ATEEZ TREASURE FILM</a>
+                    <a href="#">ATEEZ TREASURE MAP</a>
+                    <a href="#">월급루팡 에이티즈</a>
+                    <a href="#">해적왕의 한 남자</a>
+                    <a href="#">Real Now ATEEZ</a>
+                  
+                    <strong>Program</strong>
+                    <a href="#">불후의 명곡</a>
+                    <a href="#">Kingdom</a>
+
+                    <strong>Etc.</strong>
+                </div>
+            </details>
+
+            <details>
+                <summary>Universe</summary>
+
+                <div class="sidebar-submenu">
+                    <a href="#">작전명 ATEEZ</a>
+                    <a href="#">꿀로그잼</a>
+                    <a href="#">해적 리부트</a>
+                    <a href="#">SSAP 댄스</a>
+                    <a href="#">기생충</a>
+                    <a href="#">방해금지모드</a>
+                    <a href="#">스트레스 띵</a>
+                    <a href="#">The Vikings</a>
+                    <a href="#">머니홀의 저주</a>
+                    <a href="#">랩업! ATEEZ</a>
+                    <a href="#">TMT</a>
+                    <a href="#">개빵멍</a>
+                    <a href="#">Etc.</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Performance</summary>
+
+                <div class="sidebar-submenu">
+                    <strong>Concert</strong>
+                    <a href="#">The Expendition Tour</a>
+                    <a href="#">The Fellowship : Map the Treasure</a>
+                    <a href="#">The Fellowship : Beginning of the End</a>
+                    <a href="#">The Fellowship : Break the Wall</a>
+                    <a href="#">Toward the Light : Will to Power</a>
+                    <a href="#">In Your Fantasy</a>
+
+                    <strong>Fanmeeting</strong>
+                    <a href="#">Del Mundo</a>
+                    <a href="#">Crescent</a>
+                    <a href="#">ATINY's Voyage : From A to Z</a>
+                    <a href="#">ATINY's Voyage : Tiny Mystery</a>
+
+                    <strong>Festival</strong>
+                    <a href="#">Chocella</a>
+                    <a href="#">Mawazine</a>
+                    <a href="#">BST</a>
+
+                    <strong>Etc.</strong>
+                </div>
+            </details>
+
+            <details>
+                <summary>Live</summary>
+
+                <div class="sidebar-submenu">
+                    <strong>Comeback</strong>
+                    <a href="#">Showcase</a>
+                    <a href="#">Comeback Live</a>
+
+                    <a href="#">Anniversary</a>
+                    <a href="#">Vlive</a>
+                    <a href="#">Youtube Live</a>
+                    <a href="#">TOKTOQ</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Album</summary>
+
+                <div class="sidebar-submenu">
+                    <strong>Korea</strong>
+                    <a href="#">Treasure Ep.1 : All to Zero</strong>
+                    <a href="#">Treasure Ep.2 : Zero To One</strong>
+                    <a href="#">Treasure Ep.3 : One To All</strong>
+                    <a href="#">Treasure Ep.Fin : All to Action</strong>
+                    <a href="#">Treasure Epilogue : Action to Answer</strong>
+                    <a href="#">Zero : Fever Part.1</strong>
+                    <a href="#">Zero : Fever Part.2</strong>
+                    <a href="#">Zero : Fever Part.3</strong>
+                    <a href="#">Zero : Fever Epilogue</strong>
+                    <a href="#">The World Ep.1 : Movement</strong>
+                    <a href="#">Spin off : From the Witness</strong>
+                    <a href="#">The World Ep.2 : Outlaw</strong>
+                    <a href="#">The World Ep.Fin : Will</strong>
+                    <a href="#">Golden Hour : Part.1</strong>
+                    <a href="#">Golden Hour : Part.2</strong>
+                    <a href="#">Golden Hour : Part.3</strong>
+                    <a href="#">Golden Hour : Part.3 'In Your Fantasy Edition'</strong>
+                    <a href="#">Golden Hour : Part.4</strong>
+                    <a href="#">Golden Hour : Part.5</strong>
+
+                    <strong>Single</strong>
+
+                    <strong>Japan</strong>
+
+                    <strong>솔로</strong>
+                    <a href="#">홍중</a>
+                    <a href="#">민기</a>
+                    <a href="#">종호</a>
+                </div>
+            </details>
+
+        </nav>
+    </aside>
+
+
+    <!-- 메뉴가 열렸을 때 뒤쪽 화면을 어둡게 처리 -->
+    <button
+        id="pageOverlay"
+        class="page-overlay"
+        type="button"
+        aria-label="카테고리 메뉴 닫기"
+    ></button>
+
+
+    <!-- 메인 배너 -->
+    <section class="main-banner">
+        <div class="banner-content">
+            <p class="banner-label">
+                ATEEZ ARCHIVE
+            </p>
+
+            <h1>
+                Ateez Archive
+            </h1>
+
+            <p>
+                @kimnt.private
+            </p>
+        </div>
+    </section>
+
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+
+        <section class="category-section">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">CATEGORY</p>
+                    <h2>카테고리</h2>
+                </div>
+            </div>
+
+            <div class="category-grid">
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">❤️</span>
+                    <strong>Youtube</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">🧡</span>
+                    <strong>Radio</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">💛</span>
+                    <strong>Show</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">💚</span>
+                    <strong>Universe</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">💙</span>
+                    <strong>Performance</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">💜</span>
+                    <strong>Live</strong>
+                </a>
+
+                <a class="category-card" href="#">
+                    <span class="category-icon">🤍</span>
+                    <strong>Album</strong>
+                </a>
+
+            </div>
+        </section>
+
+    <script src="script.js"></script>
+</body>
 </html>
