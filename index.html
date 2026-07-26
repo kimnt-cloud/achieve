@@ -8,13 +8,20 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>ATEEZ Archive</title>
+    <meta
+        name="description"
+        content="All about ATEEZ"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Ateez Archive</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
 </head>
 
-<body>
-
+<body data-page-depth="">
     <!-- 상단 헤더 -->
     <header class="site-header">
         <button
@@ -22,12 +29,17 @@
             class="icon-button"
             type="button"
             aria-label="카테고리 메뉴 열기"
+            aria-controls="sidebar"
+            aria-expanded="false"
         >
             ☰
         </button>
 
-        <a class="site-title" href="index.html">
-            ATEEZ Archive
+        <a
+            class="site-title"
+            href="index.html"
+        >
+            Ateez Archive
         </a>
 
         <button
@@ -41,184 +53,15 @@
     </header>
 
 
-    <!-- 왼쪽 슬라이드 메뉴 -->
-    <aside id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <strong>Category</strong>
+    <!-- sidebar.html이 삽입되는 위치 -->
+    <div id="sidebarComponent"></div>
 
-            <button
-                id="closeMenuButton"
-                class="close-button"
-                type="button"
-                aria-label="카테고리 메뉴 닫기"
-            >
-                ×
-            </button>
-        </div>
-
-        <nav class="sidebar-navigation">
-
-            <a href="index.html" class="sidebar-main-link">
-                Home
-            </a>
-
-            <details>
-                <summary>YouTube</summary>
-
-                <div class="sidebar-submenu">
-                    <strong>Original Content</strong>
-                    <a href="#">Wanteez</a>
-                    <a href="#">Log Book</a>
-                    <a href="#">Fever Road</a>
-                    <a href="#">A to Z</a>
-                    <a href="#">Special Clip</a>
-
-                    <strong>External Content</strong>
-                    <a href="#">1N2D</a>
-                    <a href="#">Idol Human Docu</a>
-                    <a href="#">9트쫑</a>
-                    <a href="#">ATEEZ+</a>
-                    <a href="#">Dingo</a>
-                    <a href="#">Etc.</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Radio</summary>
-
-                <div class="sidebar-submenu">
-                    <a href="#">Idol Radio</a>
-                    <a href="#">Etc.</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Show</summary>
-
-                <div class="sidebar-submenu">
-                    <strong>Reality</strong>
-                    <a href="#">ATEEZ WANTED</a>
-                    <a href="#">ATEEZ TREASURE FILM</a>
-                    <a href="#">ATEEZ TREASURE MAP</a>
-                    <a href="#">월급루팡 에이티즈</a>
-                    <a href="#">해적왕의 한 남자</a>
-                    <a href="#">Real Now ATEEZ</a>
-                  
-                    <strong>Program</strong>
-                    <a href="#">불후의 명곡</a>
-                    <a href="#">Kingdom</a>
-
-                    <strong>Etc.</strong>
-                </div>
-            </details>
-
-            <details>
-                <summary>Universe</summary>
-
-                <div class="sidebar-submenu">
-                    <a href="#">작전명 ATEEZ</a>
-                    <a href="#">꿀로그잼</a>
-                    <a href="#">해적 리부트</a>
-                    <a href="#">SSAP 댄스</a>
-                    <a href="#">기생충</a>
-                    <a href="#">방해금지모드</a>
-                    <a href="#">스트레스 띵</a>
-                    <a href="#">The Vikings</a>
-                    <a href="#">머니홀의 저주</a>
-                    <a href="#">랩업! ATEEZ</a>
-                    <a href="#">TMT</a>
-                    <a href="#">개빵멍</a>
-                    <a href="#">Etc.</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Performance</summary>
-
-                <div class="sidebar-submenu">
-                    <strong>Concert</strong>
-                    <a href="#">The Expedition Tour</a>
-                    <a href="#">The Fellowship : Map the Treasure</a>
-                    <a href="#">The Fellowship : Beginning of the End</a>
-                    <a href="#">The Fellowship : Break the Wall</a>
-                    <a href="#">Toward the Light : Will to Power</a>
-                    <a href="#">In Your Fantasy</a>
-
-                    <strong>Fan Meeting</strong>
-                    <a href="#">Del Mundo</a>
-                    <a href="#">Crescent</a>
-                    <a href="#">ATINY's Voyage : From A to Z</a>
-                    <a href="#">ATINY's Voyage : Tiny Mystery</a>
-
-                    <strong>Festival</strong>
-                    <a href="#">Coachella</a>
-                    <a href="#">Mawazine</a>
-                    <a href="#">BST</a>
-
-                    <strong>Etc.</strong>
-                </div>
-            </details>
-
-            <details>
-                <summary>Live</summary>
-
-                <div class="sidebar-submenu">
-                    <strong>Comeback</strong>
-                    <a href="#">Showcase</a>
-                    <a href="#">Comeback Live</a>
-
-                    <a href="#">Anniversary</a>
-                    <a href="#">Vlive</a>
-                    <a href="#">YouTube Live</a>
-                    <a href="#">TOKTOQ</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Album</summary>
-
-                <div class="sidebar-submenu">
-                  <strong>Korea</strong>
-                    <a href="#">Treasure Ep.1 : All to Zero</a>
-                    <a href="#">Treasure Ep.2 : Zero To One</a>
-                    <a href="#">Treasure Ep.3 : One To All</a>
-                    <a href="#">Treasure Ep.Fin : All to Action</a>
-                    <a href="#">Treasure Epilogue : Action to Answer</a>
-                    <a href="#">Zero : Fever Part.1</a>
-                    <a href="#">Zero : Fever Part.2</a>
-                    <a href="#">Zero : Fever Part.3</a>
-                    <a href="#">Zero : Fever Epilogue</a>
-                    <a href="#">The World Ep.1 : Movement</a>
-                    <a href="#">Spin Off : From the Witness</a>
-                    <a href="#">The World Ep.2 : Outlaw</a>
-                    <a href="#">The World Ep.Fin : Will</a>
-                    <a href="#">Golden Hour : Part.1</a>
-                    <a href="#">Golden Hour : Part.2</a>
-                    <a href="#">Golden Hour : Part.3</a>
-                    <a href="#">Golden Hour : Part.3 'In Your Fantasy Edition'</a>
-                    <a href="#">Golden Hour : Part.4</a>
-                    <a href="#">Golden Hour : Part.5</a>
-                    <strong>Single</strong>
-
-                    <strong>Japan</strong>
-
-                    <strong>Solo</strong>
-                    <a href="#">홍중</a>
-                    <a href="#">민기</a>
-                    <a href="#">종호</a>
-                </div>
-            </details>
-
-        </nav>
-    </aside>
-
-
-    <!-- 메뉴가 열렸을 때 뒤쪽 화면을 어둡게 처리 -->
     <button
-        id="pageOverlay"
-        class="page-overlay"
-        type="button"
-        aria-label="카테고리 메뉴 닫기"
+    id="pageOverlay"
+    class="page-overlay"
+    type="button"
+    aria-label="카테고리 메뉴 닫기"
+    tabindex="-1"
     ></button>
 
 
@@ -230,7 +73,7 @@
             </p>
 
             <h1>
-                ATEEZ Archive
+                Ateez Archive
             </h1>
 
             <p>
@@ -242,56 +85,146 @@
 
     <!-- 메인 콘텐츠 -->
     <main class="main-content">
-
-        <section class="category-section">
+        <section
+            class="category-section"
+            aria-labelledby="mainCategoryTitle"
+        >
             <div class="section-heading">
                 <div>
-                    <p class="section-label">CATEGORY</p>
-                    <h2>카테고리</h2>
+                    <p class="section-label">
+                        CATEGORY
+                    </p>
+
+                    <h2 id="mainCategoryTitle">
+                        카테고리
+                    </h2>
                 </div>
             </div>
 
+
             <div class="category-grid">
+                <a
+                    class="category-card"
+                    href="pages/youtube/youtube.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
 
-                <a class="category-card" href="pages/youtube.html">
-                    <span class="category-icon">❤️</span>
-                    <strong>YouTube</strong>
+                    <strong>
+                        YouTube
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/radio.html">
-                    <span class="category-icon">🧡</span>
-                    <strong>Radio</strong>
+
+                <a
+                    class="category-card"
+                    href="pages/radio/radio.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        🧡
+                    </span>
+
+                    <strong>
+                        Radio
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/show.html">
-                    <span class="category-icon">💛</span>
-                    <strong>Show</strong>
+
+                <a
+                    class="category-card"
+                    href="pages/show/show.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        💛
+                    </span>
+
+                    <strong>
+                        Show
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/universe.html">
-                    <span class="category-icon">💚</span>
-                    <strong>Universe</strong>
+
+                <a
+                    class="category-card"
+                    href="pages/universe/universe.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        💚
+                    </span>
+
+                    <strong>
+                        Universe
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/performance.html">
-                    <span class="category-icon">💙</span>
-                    <strong>Performance</strong>
+
+                <a
+                    class="category-card"
+                    href="pages/performance/performance.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        💙
+                    </span>
+
+                    <strong>
+                        Performance
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/live.html">
-                    <span class="category-icon">💜</span>
-                    <strong>Live</strong>
+
+                <a
+                    class="category-card"
+                    href="pages/live/live.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        💜
+                    </span>
+
+                    <strong>
+                        Live
+                    </strong>
                 </a>
 
-                <a class="category-card" href="pages/album.html">
-                    <span class="category-icon">🖤</span>
-                    <strong>Album</strong>
-                </a>
 
+                <a
+                    class="category-card"
+                    href="pages/album/album.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        🖤
+                    </span>
+
+                    <strong>
+                        Album
+                    </strong>
+                </a>
             </div>
         </section>
     </main>
-    
-    <script src="script.js"></script>
+
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
