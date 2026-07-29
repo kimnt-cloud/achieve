@@ -17,19 +17,12 @@
 
     <link
         rel="stylesheet"
-        href="../../css/style.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../css/category-page.css"
+        href="../../assets/css/style.css"
     >
 </head>
 
-<body
-    data-root-path="../../"
-    data-category-page="youtube"
->
+<body data-root-path="../../">
+    <!-- 상단 헤더 -->
     <header class="site-header">
         <button
             id="menuButton"
@@ -60,8 +53,11 @@
     </header>
 
 
+    <!-- sidebar.html이 삽입되는 위치 -->
     <div id="sidebarComponent"></div>
 
+
+    <!-- 사이드바가 열렸을 때 배경을 어둡게 처리 -->
     <button
         id="pageOverlay"
         class="page-overlay"
@@ -71,8 +67,9 @@
     ></button>
 
 
-    <section class="category-page-banner">
-        <div class="category-page-banner-content">
+    <!-- YouTube 페이지 배너 -->
+    <section class="main-banner">
+        <div class="banner-content">
             <p class="banner-label">
                 ATEEZ ARCHIVE
             </p>
@@ -82,104 +79,90 @@
             </h1>
 
             <p>
-                ATEEZ의 YouTube 콘텐츠를 카테고리별로 확인하세요.
+                Original Content &amp; External Content
             </p>
         </div>
     </section>
 
 
-    <main class="main-content category-page-content">
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
         <section
-            class="content-section"
-            aria-labelledby="youtubeContentTitle"
+            class="category-section"
+            aria-labelledby="youtubeCategoryTitle"
         >
-            <div class="section-heading category-page-heading">
+            <div class="section-heading">
                 <div>
                     <p class="section-label">
                         YOUTUBE
                     </p>
 
-                    <h2 id="youtubeContentTitle">
-                        콘텐츠 선택
+                    <h2 id="youtubeCategoryTitle">
+                        카테고리
                     </h2>
                 </div>
-
-                <p
-                    id="categoryResultCount"
-                    class="filter-result-count"
-                    data-filter-result-count
-                    aria-live="polite"
-                >
-                    전체 0개
-                </p>
             </div>
 
 
-            <div
-                class="category-search"
-                role="search"
-            >
-                <label
-                    class="visually-hidden"
-                    for="categorySearchInput"
+            <!-- YouTube 중분류 카드 -->
+            <div class="category-grid">
+                <!-- Original Content -->
+                <a
+                    class="category-card"
+                    href="original-content/index.html"
                 >
-                    YouTube 콘텐츠 검색
-                </label>
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
 
-                <input
-                    id="categorySearchInput"
-                    class="category-search-input"
-                    type="search"
-                    placeholder="제목, 태그, 멤버 이름으로 검색"
-                    autocomplete="off"
-                >
+                    <strong>
+                        Original Content
+                    </strong>
+                </a>
 
-                <button
-                    id="categorySearchReset"
-                    class="category-search-reset"
-                    type="button"
+
+                <!-- External Content -->
+                <a
+                    class="category-card"
+                    href="external-content/index.html"
                 >
-                    초기화
-                </button>
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        External Content
+                    </strong>
+                </a>
+
+
+                <!-- All -->
+                <a
+                    class="category-card"
+                    href="all.html"
+                >
+                    <span
+                        class="category-icon"
+                        aria-hidden="true"
+                    >
+                        ❤️
+                    </span>
+
+                    <strong>
+                        All
+                    </strong>
+                </a>
             </div>
-
-
-            <div
-                id="categoryFilter"
-                class="category-filter"
-                role="group"
-                aria-label="YouTube 콘텐츠 중분류 선택"
-            ></div>
-
-
-            <div
-                id="detailCategoryFilter"
-                class="detail-category-filter"
-                role="group"
-                aria-label="YouTube 콘텐츠 소분류 선택"
-            ></div>
-
-
-            <div
-                id="categoryContentGrid"
-                class="content-grid category-content-grid"
-                aria-live="polite"
-            ></div>
-
-            <p
-                id="categoryEmptyMessage"
-                class="category-empty-message"
-                hidden
-            >
-                검색 조건에 맞는 콘텐츠가 없습니다.
-            </p>
         </section>
     </main>
 
 
-    <script src="../../js/script.js"></script>
-    <script src="../../js/member-data.js"></script>
-    <script src="../../js/data/youtube.js"></script>
-    <script src="../../js/category-page.js"></script>
+    <script src="../../assets/js/script.js"></script>
 </body>
 </html>

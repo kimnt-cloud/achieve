@@ -2,44 +2,16 @@
 
 
 /*
-    대분류 허브 페이지 공통 기능
+    대분류 페이지 공통 엔진
 
-    이 파일은 실제 콘텐츠 데이터를 직접 저장하지 않습니다.
-    각 대분류의 데이터 파일에서 아래 전역 객체를 먼저 준비해야 합니다.
+    필요한 스크립트 순서:
 
-    예시:
-    window.categoryPageData = {
-        filters: [
-            {
-                id: "original",
-                label: "Original Content"
-            },
-            {
-                id: "external",
-                label: "External Content"
-            }
-        ],
-
-        contents: [
-            {
-                title: "Wanteez",
-                subcategory: "original",
-                image: "",
-                placeholder: "W",
-                link: "original-content/wanteez/wanteez.html"
-            }
-        ]
-    };
-
-    All 버튼은 이 파일에서 자동으로 생성합니다.
-    모든 콘텐츠는 별도의 all 값을 저장하지 않아도
-    All 필터에 자동으로 포함됩니다.
+    1. member-data.js
+    2. 페이지별 데이터 파일
+    3. category-page.js
 */
 
 
-/*
-    현재 페이지의 대분류 데이터를 반환합니다.
-*/
 function getCategoryPageData() {
     const pageData = window.categoryPageData;
 
@@ -50,15 +22,27 @@ function getCategoryPageData() {
         );
 
         return {
+            pageTitle: "",
             filters: [],
+            detailCategories: [],
             contents: []
         };
     }
 
     return {
+        pageTitle:
+            typeof pageData.pageTitle === "string"
+                ? pageData.pageTitle
+                : "",
+
         filters: Array.isArray(pageData.filters)
             ? pageData.filters
             : [],
+
+        detailCategories:
+            Array.isArray(pageData.detailCategories)
+                ? pageData.detailCategories
+                : [],
 
         contents: Array.isArray(pageData.contents)
             ? pageData.contents
@@ -67,38 +51,67 @@ function getCategoryPageData() {
 }
 
 
-/*
-    필터 ID에 해당하는 표시 이름을 반환합니다.
-*/
 function getCategoryFilterLabel(filters, filterId) {
     if (filterId === "all") {
         return "All";
     }
 
-    const matchedFilter = filters.find(
-        (filter) => filter.id === filterId
-    );
+    const matchedFilter = filters.find((filter) => {
+        return filter.id === filterId;
+    });
 
-    return matchedFilter
-        ? matchedFilter.label
-        : filterId;
+    return matchedFilter?.label || filterId || "";
 }
 
 
-/*
-    중분류 필터 버튼 하나를 생성합니다.
-*/
-function createCategoryFilterButton(filter, isActive = false) {
+function getDetailCategoryLabel(detailCategories, detailId) {
+    const matchedDetail = detailCategories.find((detail) => {
+        return detail.id === detailId;
+    });
+
+    return matchedDetail?.label || detailId || "";
+}
+
+
+function getUploadDateValue(content) {
+    if (
+        !content ||
+        typeof content.uploadDate !== "string"
+    ) {
+        return 0;
+    }
+
+    const dateValue = Date.parse(content.uploadDate);
+
+    return Number.isNaN(dateValue)
+        ? 0
+        : dateValue;
+}
+
+
+function sortContentsByUploadDate(contents) {
+    return [...contents].sort((firstContent, secondContent) => {
+        return (
+            getUploadDateValue(secondContent) -
+            getUploadDateValue(firstContent)
+        );
+    });
+}
+
+
+function createFilterButton(
+    className,
+    dataName,
+    filter,
+    isActive = false
+) {
     const button = document.createElement("button");
 
-    button.className = "category-filter-button";
+    button.className = className;
     button.type = "button";
-    button.dataset.filter = filter.id;
+    button.dataset[dataName] = filter.id;
     button.textContent = filter.label;
-    button.setAttribute(
-        "aria-pressed",
-        String(isActive)
-    );
+    button.setAttribute("aria-pressed", String(isActive));
 
     if (isActive) {
         button.classList.add("is-active");
@@ -108,9 +121,6 @@ function createCategoryFilterButton(filter, isActive = false) {
 }
 
 
-/*
-    All 버튼과 데이터 파일에 등록된 중분류 버튼을 생성합니다.
-*/
 function renderCategoryFilterButtons(filters) {
     const filterContainer =
         document.getElementById("categoryFilter");
@@ -122,7 +132,9 @@ function renderCategoryFilterButtons(filters) {
     const fragment = document.createDocumentFragment();
 
     fragment.appendChild(
-        createCategoryFilterButton(
+        createFilterButton(
+            "category-filter-button",
+            "filter",
             {
                 id: "all",
                 label: "All"
@@ -142,7 +154,11 @@ function renderCategoryFilterButtons(filters) {
         }
 
         fragment.appendChild(
-            createCategoryFilterButton(filter)
+            createFilterButton(
+                "category-filter-button",
+                "filter",
+                filter
+            )
         );
     });
 
@@ -150,17 +166,175 @@ function renderCategoryFilterButtons(filters) {
 }
 
 
-/*
-    이미지 또는 임시 썸네일 요소를 생성합니다.
-*/
+function renderDetailFilterButtons(
+    detailCategories,
+    selectedCategory
+) {
+    const detailContainer =
+        document.getElementById("detailCategoryFilter");
+
+    if (!detailContainer) {
+        return;
+    }
+
+    const availableDetails = detailCategories.filter((detail) => {
+        return (
+            selectedCategory === "all" ||
+            detail.parent === selectedCategory
+        );
+    });
+
+    if (availableDetails.length === 0) {
+        detailContainer.hidden = true;
+        detailContainer.replaceChildren();
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    fragment.appendChild(
+        createFilterButton(
+            "detail-filter-button",
+            "detailFilter",
+            {
+                id: "all",
+                label: "전체"
+            },
+            true
+        )
+    );
+
+    availableDetails.forEach((detail) => {
+        fragment.appendChild(
+            createFilterButton(
+                "detail-filter-button",
+                "detailFilter",
+                detail
+            )
+        );
+    });
+
+    detailContainer.replaceChildren(fragment);
+    detailContainer.hidden = false;
+}
+
+
+function extractYouTubeVideoId(link) {
+    if (typeof link !== "string" || link.trim() === "") {
+        return "";
+    }
+
+    const trimmedLink = link.trim();
+
+    try {
+        const url = new URL(trimmedLink);
+        const hostname = url.hostname
+            .replace(/^www\./, "")
+            .replace(/^m\./, "");
+
+        if (hostname === "youtu.be") {
+            return url.pathname.split("/").filter(Boolean)[0] || "";
+        }
+
+        if (
+            hostname === "youtube.com" ||
+            hostname === "music.youtube.com"
+        ) {
+            const queryVideoId = url.searchParams.get("v");
+
+            if (queryVideoId) {
+                return queryVideoId;
+            }
+
+            const pathParts = url.pathname
+                .split("/")
+                .filter(Boolean);
+
+            const supportedPathTypes = [
+                "shorts",
+                "live",
+                "embed"
+            ];
+
+            if (
+                pathParts.length >= 2 &&
+                supportedPathTypes.includes(pathParts[0])
+            ) {
+                return pathParts[1];
+            }
+        }
+    } catch (error) {
+        console.warn(
+            "올바른 YouTube 주소가 아닙니다:",
+            trimmedLink
+        );
+    }
+
+    return "";
+}
+
+
+function getYouTubeThumbnailUrl(
+    videoId,
+    quality = "maxresdefault"
+) {
+    return (
+        "https://i.ytimg.com/vi/" +
+        `${encodeURIComponent(videoId)}/${quality}.jpg`
+    );
+}
+
+
+function getContentLink(content) {
+    if (
+        typeof content.link === "string" &&
+        content.link.trim() !== ""
+    ) {
+        return content.link.trim();
+    }
+
+    return "#";
+}
+
+
 function createCategoryThumbnail(content) {
-    if (content.image) {
+    const youtubeVideoId =
+        content.type === "youtube"
+            ? extractYouTubeVideoId(content.link)
+            : "";
+
+    const isYouTubeContent = youtubeVideoId !== "";
+
+    const imageSource = isYouTubeContent
+        ? getYouTubeThumbnailUrl(
+            youtubeVideoId,
+            "maxresdefault"
+        )
+        : content.image;
+
+    if (imageSource) {
         const image = document.createElement("img");
 
         image.className = "content-card-image";
-        image.src = content.image;
-        image.alt = content.imageAlt || "";
+        image.src = imageSource;
+        image.alt = content.imageAlt || content.title || "";
         image.loading = "lazy";
+        image.decoding = "async";
+
+        if (isYouTubeContent) {
+            image.addEventListener(
+                "error",
+                () => {
+                    image.src = getYouTubeThumbnailUrl(
+                        youtubeVideoId,
+                        "hqdefault"
+                    );
+                },
+                {
+                    once: true
+                }
+            );
+        }
 
         return image;
     }
@@ -170,9 +344,7 @@ function createCategoryThumbnail(content) {
 
     placeholder.className = "content-card-placeholder";
     placeholder.setAttribute("aria-hidden", "true");
-
-    placeholderText.textContent =
-        content.placeholder || "ATEEZ";
+    placeholderText.textContent = content.placeholder || "ATEEZ";
 
     placeholder.appendChild(placeholderText);
 
@@ -180,34 +352,89 @@ function createCategoryThumbnail(content) {
 }
 
 
-/*
-    콘텐츠 데이터 하나를 카드 요소로 변환합니다.
-*/
-function createCategoryCard(content, filters) {
+function getValidatedMembers(content) {
+    if (
+        typeof window.validateAteezMemberCodes !== "function"
+    ) {
+        return Array.isArray(content.members)
+            ? content.members
+            : [];
+    }
+
+    return window.validateAteezMemberCodes(content.members);
+}
+
+
+function createCategoryCard(
+    content,
+    filters,
+    detailCategories
+) {
     const card = document.createElement("a");
     const cardBody = document.createElement("div");
     const categoryText = document.createElement("p");
     const title = document.createElement("h3");
+    const memberText = document.createElement("p");
 
-    card.className =
-        "content-card category-content-card";
+    const memberCodes = getValidatedMembers(content);
 
-    card.href = content.link || "#";
+    card.className = "content-card category-content-card";
+    card.href = getContentLink(content);
     card.dataset.category = content.subcategory || "";
+    card.dataset.detailCategory = content.detailCategory || "";
+    card.dataset.members = memberCodes.join(" ");
+    card.dataset.searchText = createContentSearchText(
+        content,
+        filters,
+        detailCategories,
+        memberCodes
+    );
+
+    if (content.uploadDate) {
+        card.dataset.uploadDate = content.uploadDate;
+    }
+
+    if (content.type === "youtube") {
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+        card.setAttribute(
+            "aria-label",
+            `${content.title || "YouTube 영상"} 새 창에서 보기`
+        );
+    }
 
     cardBody.className = "content-card-body";
-
     categoryText.className = "content-card-category";
-    categoryText.textContent = getCategoryFilterLabel(
+
+    const categoryLabel = getCategoryFilterLabel(
         filters,
         content.subcategory
     );
 
+    const detailLabel = getDetailCategoryLabel(
+        detailCategories,
+        content.detailCategory
+    );
+
+    categoryText.textContent = detailLabel
+        ? `${categoryLabel} · ${detailLabel}`
+        : categoryLabel;
+
     title.className = "content-card-title";
     title.textContent = content.title || "제목 없음";
 
+    memberText.className = "content-card-members";
+    memberText.textContent =
+        typeof window.getAteezMemberText === "function"
+            ? window.getAteezMemberText(memberCodes)
+            : memberCodes.join(" / ");
+
     cardBody.appendChild(categoryText);
     cardBody.appendChild(title);
+
+    if (memberText.textContent) {
+        cardBody.appendChild(memberText);
+    }
 
     card.appendChild(createCategoryThumbnail(content));
     card.appendChild(cardBody);
@@ -216,10 +443,56 @@ function createCategoryCard(content, filters) {
 }
 
 
-/*
-    데이터 파일의 모든 콘텐츠를 카드로 생성합니다.
-*/
-function renderCategoryCards(contents, filters) {
+function createContentSearchText(
+    content,
+    filters,
+    detailCategories,
+    memberCodes
+) {
+    const textParts = [
+        content.title,
+        content.uploadDate,
+        getCategoryFilterLabel(filters, content.subcategory),
+        getDetailCategoryLabel(
+            detailCategories,
+            content.detailCategory
+        ),
+        ...(Array.isArray(content.tags) ? content.tags : [])
+    ];
+
+    memberCodes.forEach((memberCode) => {
+        const member = window.ATEEZ_MEMBER_DATA?.[memberCode];
+
+        if (!member) {
+            return;
+        }
+
+        textParts.push(member.label, ...member.aliases);
+
+        if (memberCode === "a") {
+            Object.values(window.ATEEZ_MEMBER_DATA || {})
+                .forEach((allMember) => {
+                    textParts.push(
+                        allMember.label,
+                        ...allMember.aliases
+                    );
+                });
+        }
+    });
+
+    const normalize =
+        window.normalizeArchiveSearchText ||
+        ((value) => String(value ?? "").toLowerCase());
+
+    return normalize(textParts.filter(Boolean).join(" "));
+}
+
+
+function renderCategoryCards(
+    contents,
+    filters,
+    detailCategories
+) {
     const contentGrid =
         document.getElementById("categoryContentGrid");
 
@@ -228,14 +501,19 @@ function renderCategoryCards(contents, filters) {
     }
 
     const fragment = document.createDocumentFragment();
+    const sortedContents = sortContentsByUploadDate(contents);
 
-    contents.forEach((content) => {
+    sortedContents.forEach((content) => {
         if (!content || typeof content !== "object") {
             return;
         }
 
         fragment.appendChild(
-            createCategoryCard(content, filters)
+            createCategoryCard(
+                content,
+                filters,
+                detailCategories
+            )
         );
     });
 
@@ -243,53 +521,55 @@ function renderCategoryCards(contents, filters) {
 }
 
 
-/*
-    선택한 필터에 맞는 카드만 표시합니다.
+function getCurrentFilterState() {
+    return {
+        category:
+            document.querySelector(
+                ".category-filter-button.is-active"
+            )?.dataset.filter || "all",
 
-    all을 선택하면 모든 콘텐츠가 표시됩니다.
-    그 외에는 content.subcategory 값이
-    선택한 필터 ID와 같은 콘텐츠만 표시됩니다.
-*/
-function updateCategoryFilter(selectedFilter, filters) {
-    const filterButtons =
-        document.querySelectorAll(
-            ".category-filter-button[data-filter]"
-        );
+        detail:
+            document.querySelector(
+                ".detail-filter-button.is-active"
+            )?.dataset.detailFilter || "all",
 
-    const contentCards =
-        document.querySelectorAll(
-            ".category-content-card[data-category]"
-        );
+        search:
+            document.getElementById("categorySearchInput")
+                ?.value || ""
+    };
+}
 
-    const resultCount =
-        document.querySelector(
-            "[data-filter-result-count]"
-        );
 
-    const emptyMessage =
-        document.getElementById("categoryEmptyMessage");
+function updateVisibleCards(filters) {
+    const state = getCurrentFilterState();
+    const cards = document.querySelectorAll(
+        ".category-content-card"
+    );
 
+    const normalize =
+        window.normalizeArchiveSearchText ||
+        ((value) => String(value ?? "").toLowerCase());
+
+    const normalizedSearch = normalize(state.search);
     let visibleCount = 0;
 
-    filterButtons.forEach((button) => {
-        const isActive =
-            button.dataset.filter === selectedFilter;
+    cards.forEach((card) => {
+        const matchesCategory =
+            state.category === "all" ||
+            card.dataset.category === state.category;
 
-        button.classList.toggle(
-            "is-active",
-            isActive
-        );
+        const matchesDetail =
+            state.detail === "all" ||
+            card.dataset.detailCategory === state.detail;
 
-        button.setAttribute(
-            "aria-pressed",
-            String(isActive)
-        );
-    });
+        const matchesSearch =
+            normalizedSearch === "" ||
+            card.dataset.searchText.includes(normalizedSearch);
 
-    contentCards.forEach((card) => {
         const shouldShow =
-            selectedFilter === "all" ||
-            card.dataset.category === selectedFilter;
+            matchesCategory &&
+            matchesDetail &&
+            matchesSearch;
 
         card.hidden = !shouldShow;
 
@@ -298,74 +578,125 @@ function updateCategoryFilter(selectedFilter, filters) {
         }
     });
 
+    const emptyMessage =
+        document.getElementById("categoryEmptyMessage");
+
     if (emptyMessage) {
         emptyMessage.hidden = visibleCount !== 0;
     }
 
-    if (!resultCount) {
-        return;
-    }
-
-    const filterLabel = getCategoryFilterLabel(
-        filters,
-        selectedFilter
+    const resultCount = document.querySelector(
+        "[data-filter-result-count]"
     );
 
-    resultCount.textContent =
-        selectedFilter === "all"
-            ? `전체 ${visibleCount}개`
-            : `${filterLabel} ${visibleCount}개`;
+    if (resultCount) {
+        const filterLabel = getCategoryFilterLabel(
+            filters,
+            state.category
+        );
+
+        resultCount.textContent =
+            state.category === "all"
+                ? `전체 ${visibleCount}개`
+                : `${filterLabel} ${visibleCount}개`;
+    }
 }
 
 
-/*
-    필터 버튼 클릭 이벤트를 연결합니다.
-*/
-function initializeCategoryFilter(filters) {
-    const filterContainer =
+function setActiveButton(buttons, selectedButton) {
+    buttons.forEach((button) => {
+        const isActive = button === selectedButton;
+
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
+}
+
+
+function initializeCategoryControls(
+    filters,
+    detailCategories
+) {
+    const categoryContainer =
         document.getElementById("categoryFilter");
 
-    if (!filterContainer) {
-        return;
-    }
+    const detailContainer =
+        document.getElementById("detailCategoryFilter");
 
-    filterContainer.addEventListener(
-        "click",
-        (event) => {
-            const clickedButton =
-                event.target.closest(
-                    ".category-filter-button[data-filter]"
-                );
+    const searchInput =
+        document.getElementById("categorySearchInput");
 
-            if (!clickedButton) {
-                return;
-            }
+    categoryContainer?.addEventListener("click", (event) => {
+        const clickedButton = event.target.closest(
+            ".category-filter-button[data-filter]"
+        );
 
-            updateCategoryFilter(
-                clickedButton.dataset.filter,
-                filters
-            );
+        if (!clickedButton) {
+            return;
         }
-    );
 
-    updateCategoryFilter("all", filters);
+        setActiveButton(
+            categoryContainer.querySelectorAll(
+                ".category-filter-button"
+            ),
+            clickedButton
+        );
+
+        renderDetailFilterButtons(
+            detailCategories,
+            clickedButton.dataset.filter
+        );
+
+        updateVisibleCards(filters);
+    });
+
+    detailContainer?.addEventListener("click", (event) => {
+        const clickedButton = event.target.closest(
+            ".detail-filter-button[data-detail-filter]"
+        );
+
+        if (!clickedButton) {
+            return;
+        }
+
+        setActiveButton(
+            detailContainer.querySelectorAll(
+                ".detail-filter-button"
+            ),
+            clickedButton
+        );
+
+        updateVisibleCards(filters);
+    });
+
+    searchInput?.addEventListener("input", () => {
+        updateVisibleCards(filters);
+    });
 }
 
 
-/*
-    대분류 허브 페이지를 초기화합니다.
-*/
 function initializeCategoryPage() {
     const pageData = getCategoryPageData();
 
     renderCategoryFilterButtons(pageData.filters);
 
-    renderCategoryCards(
-        pageData.contents,
-        pageData.filters
+    renderDetailFilterButtons(
+        pageData.detailCategories,
+        "all"
     );
 
-    initializeCategoryFilter(pageData.filters);
+    renderCategoryCards(
+        pageData.contents,
+        pageData.filters,
+        pageData.detailCategories
+    );
+
+    initializeCategoryControls(
+        pageData.filters,
+        pageData.detailCategories
+    );
+
+    updateVisibleCards(pageData.filters);
 }
 
 
