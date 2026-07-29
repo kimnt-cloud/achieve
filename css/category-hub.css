@@ -1,0 +1,268 @@
+/*
+    대분류 페이지 전용 스타일
+
+    적용 페이지 예시:
+    pages/youtube/youtube.html
+    pages/radio/radio.html
+    pages/show/show.html
+*/
+
+
+/* 대분류 페이지 배너 */
+
+.category-page-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 300px;
+    padding: 64px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(112, 9, 19, 0.96),
+            rgba(216, 32, 49, 0.82)
+        );
+
+    color: #ffffff;
+    text-align: center;
+}
+
+.category-page-banner-content {
+    width: 100%;
+    max-width: 760px;
+}
+
+.category-page-banner-content h1 {
+    margin: 0;
+
+    font-size: clamp(46px, 8vw, 76px);
+    line-height: 1.05;
+}
+
+.category-page-banner-content p:last-child {
+    margin: 20px 0 0;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* 대분류 페이지 본문 */
+
+.category-page-content {
+    padding-top: 60px;
+}
+
+.category-page-heading {
+    gap: 24px;
+}
+
+.filter-result-count {
+    flex-shrink: 0;
+
+    margin: 0 0 4px;
+
+    color: #777777;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* 중분류 필터 */
+
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.category-filter-button {
+    min-height: 44px;
+    padding: 10px 18px;
+
+    background-color: #ffffff;
+    border: 1px solid #dcdce1;
+    border-radius: 999px;
+
+    color: #555555;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.category-filter-button:hover {
+    border-color: #a9a9b0;
+    color: #202124;
+}
+
+.category-filter-button:active {
+    transform: scale(0.97);
+}
+
+.category-filter-button.is-active {
+    background-color: #202124;
+    border-color: #202124;
+    color: #ffffff;
+}
+
+.category-filter-button.is-active:hover {
+    background-color: #202124;
+    border-color: #202124;
+    color: #ffffff;
+}
+
+
+/* 대분류 콘텐츠 카드 */
+
+.category-content-grid {
+    align-items: stretch;
+}
+
+.category-content-card {
+    height: 100%;
+}
+
+.category-content-card[hidden] {
+    display: none;
+}
+
+.content-card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ececf0,
+            #d9d9df
+        );
+
+    color: #76767e;
+}
+
+.content-card-placeholder span {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.content-card-category {
+    margin: 0 0 8px;
+
+    color: #999999;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+
+/* 모바일 화면 */
+
+@media (max-width: 520px) {
+    .category-page-banner {
+        min-height: 240px;
+        padding: 48px 20px;
+    }
+
+    .category-page-banner-content p:last-child {
+        font-size: 14px;
+    }
+
+    .category-page-content {
+        padding-top: 44px;
+    }
+
+    .category-page-heading {
+        align-items: flex-start;
+    }
+
+    .filter-result-count {
+        margin-top: 5px;
+
+        font-size: 13px;
+    }
+
+    .category-filter {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+
+        margin-bottom: 24px;
+    }
+
+    .category-filter-button {
+        width: 100%;
+        min-height: 42px;
+        padding: 9px 12px;
+
+        font-size: 13px;
+    }
+
+    .category-filter-button:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .content-card-placeholder span {
+        font-size: 27px;
+    }
+
+    .content-card-category {
+        font-size: 10px;
+        letter-spacing: 0.7px;
+    }
+}
+
+
+/* 움직임 감소 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+    .category-filter-button,
+    .category-content-card {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* 등록된 콘텐츠가 없을 때 표시되는 안내 */
+
+.category-empty-message {
+    margin: 36px 0 0;
+    padding: 48px 24px;
+
+    background-color: #ffffff;
+    border: 1px solid #e4e4e8;
+    border-radius: 16px;
+
+    color: #777777;
+    text-align: center;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.category-empty-message[hidden] {
+    display: none;
+}
