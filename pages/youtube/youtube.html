@@ -17,12 +17,19 @@
 
     <link
         rel="stylesheet"
-        href="../../assets/css/style.css"
+        href="../../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../css/category-page.css"
     >
 </head>
 
-<body data-root-path="../../">
-    <!-- 상단 헤더 -->
+<body
+    data-root-path="../../"
+    data-category-page="youtube"
+>
     <header class="site-header">
         <button
             id="menuButton"
@@ -53,11 +60,8 @@
     </header>
 
 
-    <!-- sidebar.html이 삽입되는 위치 -->
     <div id="sidebarComponent"></div>
 
-
-    <!-- 사이드바가 열렸을 때 배경을 어둡게 처리 -->
     <button
         id="pageOverlay"
         class="page-overlay"
@@ -67,9 +71,8 @@
     ></button>
 
 
-    <!-- YouTube 페이지 배너 -->
-    <section class="main-banner">
-        <div class="banner-content">
+    <section class="category-page-banner">
+        <div class="category-page-banner-content">
             <p class="banner-label">
                 ATEEZ ARCHIVE
             </p>
@@ -79,255 +82,104 @@
             </h1>
 
             <p>
-                Original Content &amp; External Content
+                ATEEZ의 YouTube 콘텐츠를 카테고리별로 확인하세요.
             </p>
         </div>
     </section>
 
 
-    <!-- 메인 콘텐츠 -->
-    <main class="main-content">
-        <!-- Original Content -->
+    <main class="main-content category-page-content">
         <section
-            class="category-section"
-            aria-labelledby="originalContentTitle"
+            class="content-section"
+            aria-labelledby="youtubeContentTitle"
         >
-            <div class="section-heading">
+            <div class="section-heading category-page-heading">
                 <div>
                     <p class="section-label">
                         YOUTUBE
                     </p>
 
-                    <h2 id="originalContentTitle">
-                        Original Content
+                    <h2 id="youtubeContentTitle">
+                        콘텐츠 선택
                     </h2>
                 </div>
+
+                <p
+                    id="categoryResultCount"
+                    class="filter-result-count"
+                    data-filter-result-count
+                    aria-live="polite"
+                >
+                    전체 0개
+                </p>
             </div>
 
 
-            <div class="category-grid">
-                <!-- Wanteez -->
-                <a
-                    class="category-card"
-                    href="original-content/wanteez/wanteez.html"
+            <div
+                class="category-search"
+                role="search"
+            >
+                <label
+                    class="visually-hidden"
+                    for="categorySearchInput"
                 >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
+                    YouTube 콘텐츠 검색
+                </label>
 
-                    <strong>
-                        Wanteez
-                    </strong>
-                </a>
-
-
-                <!-- Log Book -->
-                <a
-                    class="category-card"
-                    href="original-content/log-book/log-book.html"
+                <input
+                    id="categorySearchInput"
+                    class="category-search-input"
+                    type="search"
+                    placeholder="제목, 태그, 멤버 이름으로 검색"
+                    autocomplete="off"
                 >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
 
-                    <strong>
-                        Log Book
-                    </strong>
-                </a>
-
-
-                <!-- Fever Road -->
-                <a
-                    class="category-card"
-                    href="original-content/fever-road/fever-road.html"
+                <button
+                    id="categorySearchReset"
+                    class="category-search-reset"
+                    type="button"
                 >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        Fever Road
-                    </strong>
-                </a>
-
-
-                <!-- A to Z -->
-                <a
-                    class="category-card"
-                    href="original-content/a-to-z/a-to-z.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        A to Z
-                    </strong>
-                </a>
-
-
-                <!-- Special Clip -->
-                <a
-                    class="category-card"
-                    href="original-content/special-clip/special-clip.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        Special Clip
-                    </strong>
-                </a>
-            </div>
-        </section>
-
-
-        <!-- External Content -->
-        <section
-            class="category-section youtube-category-section"
-            aria-labelledby="externalContentTitle"
-        >
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">
-                        YOUTUBE
-                    </p>
-
-                    <h2 id="externalContentTitle">
-                        External Content
-                    </h2>
-                </div>
+                    초기화
+                </button>
             </div>
 
 
-            <div class="category-grid">
-                <!-- 1N2D -->
-                <a
-                    class="category-card"
-                    href="external-content/1n2d/1n2d.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        1N2D
-                    </strong>
-                </a>
+            <div
+                id="categoryFilter"
+                class="category-filter"
+                role="group"
+                aria-label="YouTube 콘텐츠 중분류 선택"
+            ></div>
 
 
-                <!-- Idol Human Docu -->
-                <a
-                    class="category-card"
-                    href="external-content/idol-human-docu/idol-human-docu.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        Idol Human Docu
-                    </strong>
-                </a>
+            <div
+                id="detailCategoryFilter"
+                class="detail-category-filter"
+                role="group"
+                aria-label="YouTube 콘텐츠 소분류 선택"
+            ></div>
 
 
-                <!-- 9트쫑 -->
-                <a
-                    class="category-card"
-                    href="external-content/9teez/9teez.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
+            <div
+                id="categoryContentGrid"
+                class="content-grid category-content-grid"
+                aria-live="polite"
+            ></div>
 
-                    <strong>
-                        9트쫑
-                    </strong>
-                </a>
-
-
-                <!-- ATEEZ+ -->
-                <a
-                    class="category-card"
-                    href="external-content/ateez-plus/ateez-plus.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        ATEEZ+
-                    </strong>
-                </a>
-
-
-                <!-- Dingo -->
-                <a
-                    class="category-card"
-                    href="external-content/dingo/dingo.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        Dingo
-                    </strong>
-                </a>
-
-
-                <!-- Etc. -->
-                <a
-                    class="category-card"
-                    href="external-content/etc/etc.html"
-                >
-                    <span
-                        class="category-icon"
-                        aria-hidden="true"
-                    >
-                        ❤️
-                    </span>
-
-                    <strong>
-                        Etc.
-                    </strong>
-                </a>
-            </div>
+            <p
+                id="categoryEmptyMessage"
+                class="category-empty-message"
+                hidden
+            >
+                검색 조건에 맞는 콘텐츠가 없습니다.
+            </p>
         </section>
     </main>
 
 
-    <script src="../../assets/js/script.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/member-data.js"></script>
+    <script src="../../js/data/youtube.js"></script>
+    <script src="../../js/category-page.js"></script>
 </body>
 </html>
