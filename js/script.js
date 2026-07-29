@@ -200,16 +200,24 @@ function openSidebar() {
     const sidebar =
         document.getElementById("sidebar");
 
+    const pageOverlay =
+        document.getElementById("pageOverlay");
+
     if (!sidebar) {
         return;
     }
 
     document.body.classList.add("menu-open");
 
+    sidebar.classList.add("open");
     sidebar.setAttribute(
         "aria-hidden",
         "false"
     );
+
+    if (pageOverlay) {
+        pageOverlay.classList.add("show");
+    }
 
     if (menuButton) {
         menuButton.setAttribute(
@@ -230,16 +238,24 @@ function closeSidebar() {
     const sidebar =
         document.getElementById("sidebar");
 
+    const pageOverlay =
+        document.getElementById("pageOverlay");
+
     if (!sidebar) {
         return;
     }
 
     document.body.classList.remove("menu-open");
 
+    sidebar.classList.remove("open");
     sidebar.setAttribute(
         "aria-hidden",
         "true"
     );
+
+    if (pageOverlay) {
+        pageOverlay.classList.remove("show");
+    }
 
     if (menuButton) {
         menuButton.setAttribute(
