@@ -1,8 +1,15 @@
+<!--
+    공통 사이드바 전체 영역입니다.
+
+    이 파일은 각 페이지에 직접 복사하지 않고,
+    script.js의 fetch 요청을 통해 #sidebarComponent 안에 삽입됩니다.
+-->
 <aside
     id="sidebar"
     class="sidebar"
     aria-hidden="true"
 >
+    <!-- 사이드바 제목과 닫기 버튼이 들어가는 고정 헤더입니다. -->
     <div class="sidebar-header">
         <strong>Category</strong>
 
@@ -16,10 +23,15 @@
         </button>
     </div>
 
+    <!--
+        사이트의 모든 대분류와 세부 페이지 링크를 모아 둔 탐색 메뉴입니다.
+        각 data-href 값은 script.js가 현재 페이지에 맞는 실제 href로 변환합니다.
+    -->
     <nav
         class="sidebar-navigation"
         aria-label="카테고리 메뉴"
     >
+        <!-- 사이트 메인페이지로 이동하는 링크입니다. -->
         <a
             data-href="index.html"
             class="sidebar-main-link"
@@ -27,10 +39,12 @@
             Home
         </a>
 
+        <!-- YouTube 대분류 메뉴입니다. -->
         <details>
             <summary>YouTube</summary>
 
             <div class="sidebar-submenu">
+                <!-- ATEEZ 공식 채널의 자체 제작 콘텐츠 목록입니다. -->
                 <strong>Original Content</strong>
 
                 <a data-href="pages/youtube/original-content/wanteez/wanteez.html">
@@ -53,6 +67,7 @@
                     Special Clip
                 </a>
 
+                <!-- 외부 채널에서 공개된 콘텐츠 목록입니다. -->
                 <strong>External Content</strong>
 
                 <a data-href="pages/youtube/external-content/1n2d/1n2d.html">
@@ -81,6 +96,7 @@
             </div>
         </details>
 
+        <!-- Radio 대분류 메뉴입니다. -->
         <details>
             <summary>Radio</summary>
 
@@ -97,10 +113,12 @@
             </div>
         </details>
 
+        <!-- Show 대분류 메뉴입니다. -->
         <details>
             <summary>Show</summary>
 
             <div class="sidebar-submenu">
+                <!-- 리얼리티 프로그램 목록입니다. -->
                 <strong>Reality</strong>
 
                 <a data-href="pages/show/reality/ateez-wanted/ateez-wanted.html">
@@ -127,6 +145,7 @@
                     Real Now ATEEZ
                 </a>
 
+                <!-- 방송 프로그램 출연 콘텐츠 목록입니다. -->
                 <strong>Program</strong>
 
                 <a data-href="pages/show/program/immortal-songs/immortal-songs.html">
@@ -144,6 +163,7 @@
             </div>
         </details>
 
+        <!-- Universe 대분류 메뉴입니다. -->
         <details>
             <summary>Universe</summary>
 
@@ -202,10 +222,12 @@
             </div>
         </details>
 
+        <!-- Performance 대분류 메뉴입니다. -->
         <details>
             <summary>Performance</summary>
 
             <div class="sidebar-submenu">
+                <!-- 콘서트별 아카이브 페이지 목록입니다. -->
                 <strong>Concert</strong>
 
                 <a data-href="pages/performance/concert/expedition-tour/expedition-tour.html">
@@ -232,6 +254,7 @@
                     In Your Fantasy
                 </a>
 
+                <!-- 팬미팅별 아카이브 페이지 목록입니다. -->
                 <strong>Fan Meeting</strong>
 
                 <a data-href="pages/performance/fan-meeting/del-mundo/del-mundo.html">
@@ -250,6 +273,7 @@
                     ATINY's Voyage : Tiny Mystery
                 </a>
 
+                <!-- 페스티벌별 아카이브 페이지 목록입니다. -->
                 <strong>Festival</strong>
 
                 <a data-href="pages/performance/festival/coachella/coachella.html">
@@ -270,10 +294,12 @@
             </div>
         </details>
 
+        <!-- Live 대분류 메뉴입니다. -->
         <details>
             <summary>Live</summary>
 
             <div class="sidebar-submenu">
+                <!-- 컴백 쇼케이스와 컴백 라이브 목록입니다. -->
                 <strong>Comeback</strong>
 
                 <a data-href="pages/live/comeback/showcase/showcase.html">
@@ -284,6 +310,7 @@
                     Comeback Live
                 </a>
 
+                <!-- 데뷔 및 연차별 기념 라이브 목록입니다. -->
                 <strong>Anniversary</strong>
 
                 <a data-href="pages/live/anniversary/debut/debut.html">
@@ -336,10 +363,12 @@
             </div>
         </details>
 
+        <!-- Album 대분류 메뉴입니다. -->
         <details>
             <summary>Album</summary>
 
             <div class="sidebar-submenu">
+                <!-- 한국 발매 앨범 목록입니다. -->
                 <strong>Korea</strong>
 
                 <a data-href="pages/album/korea/treasure-ep1/treasure-ep1.html">
@@ -418,18 +447,21 @@
                     Golden Hour : Part.5
                 </a>
 
+                <!-- 싱글 앨범 목록입니다. -->
                 <strong>Single</strong>
 
                 <a data-href="pages/album/single/single.html">
                     Single
                 </a>
 
+                <!-- 일본 발매 앨범 목록입니다. -->
                 <strong>Japan</strong>
 
                 <a data-href="pages/album/japan/japan.html">
                     Japan Albums
                 </a>
 
+                <!-- 멤버별 솔로 음악 페이지 목록입니다. -->
                 <strong>Solo</strong>
 
                 <a data-href="pages/album/solo/hongjoong/hongjoong.html">

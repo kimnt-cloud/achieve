@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- 한글과 특수문자가 깨지지 않도록 UTF-8 문자 인코딩을 사용합니다. -->
     <meta charset="UTF-8">
 
+    <!-- 모바일 화면에서 실제 기기 너비에 맞춰 페이지가 표시되도록 설정합니다. -->
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
+    <!-- 검색 결과와 공유 정보에 사용될 수 있는 페이지 설명입니다. -->
     <meta
         name="description"
-        content="All about ATEEZ"
+        content="ATEEZ Archive"
     >
 
+    <!-- 브라우저 탭에 표시되는 페이지 제목입니다. -->
     <title>Ateez Archive</title>
 
+    <!-- 메인 스타일시트를 불러와 페이지 전체 디자인을 적용합니다. -->
     <link
         rel="stylesheet"
         href="css/style.css"
     >
 </head>
 
+<!--
+    실제 화면에 표시되는 모든 콘텐츠가 들어가는 영역입니다.
+
+    data-page-depth는 기존 구조에서 사용하던 페이지 깊이 정보입니다.
+    현재 script.js는 data-root-path를 사용하므로,
+    경로 시스템을 통일할 때는 data-root-path=""로 변경할 수 있습니다.
+-->
 <body data-page-depth="">
-    <!-- 상단 헤더 -->
+    <!--
+        상단 헤더
+        메뉴 열기 버튼, 사이트 제목, 검색 버튼을 한 줄에 배치합니다.
+    -->
     <header class="site-header">
         <button
             id="menuButton"
@@ -59,8 +74,16 @@
         script.js에서 sidebar.html을 불러온 뒤
         이 요소 내부에 사이드바를 삽입합니다.
     -->
+    <!--
+        sidebar.html의 내용을 JavaScript가 이 요소 안에 삽입합니다.
+        여러 페이지에서 동일한 사이드바 파일을 공유하기 위한 자리입니다.
+    -->
     <div id="sidebarComponent"></div>
 
+    <!--
+        사이드바가 열렸을 때 본문 뒤를 어둡게 덮는 오버레이입니다.
+        오버레이를 누르면 사이드바가 닫힙니다.
+    -->
     <button
     id="pageOverlay"
     class="page-overlay"
@@ -70,7 +93,10 @@
     ></button>
 
 
-    <!-- 메인 배너 -->
+    <!--
+        메인 배너
+        사이트의 핵심 제목과 간단한 소개 문구를 크게 보여줍니다.
+    -->
     <section class="main-banner">
         <div class="banner-content">
             <p class="banner-label">
@@ -88,7 +114,10 @@
     </section>
 
 
-    <!-- 메인 콘텐츠 -->
+    <!--
+        메인 콘텐츠
+        각 대분류 페이지로 이동하는 카테고리 카드를 표시합니다.
+    -->
     <main class="main-content">
         <section
             class="category-section"
@@ -107,7 +136,13 @@
             </div>
 
 
+            <!--
+                카테고리 카드 그리드
+                화면 크기에 따라 여러 열로 배치되며,
+                각 카드는 해당 대분류 페이지로 이동합니다.
+            -->
             <div class="category-grid">
+                <!-- YouTube 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/youtube/youtube.html"
@@ -126,6 +161,7 @@
                 </a>
 
 
+                <!-- Radio 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/radio/radio.html"
@@ -143,7 +179,7 @@
                 </a>
 
 
-                <!-- Show -->
+                <!-- Show 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/show/show.html"
@@ -161,7 +197,7 @@
                 </a>
 
 
-                <!-- Universe -->
+                <!-- Universe 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/universe/universe.html"
@@ -179,7 +215,7 @@
                 </a>
 
 
-                <!-- Performance -->
+                <!-- Performance 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/performance/performance.html"
@@ -197,7 +233,7 @@
                 </a>
 
 
-                <!-- Live -->
+                <!-- Live 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/live/live.html"
@@ -215,7 +251,7 @@
                 </a>
 
 
-                <!-- Album -->
+                <!-- Album 대분류 페이지로 이동하는 카드입니다. -->
                 <a
                     class="category-card"
                     href="pages/album/album.html"
@@ -235,6 +271,10 @@
         </section>
     </main>
 
+    <!--
+        공통 사이드바 로딩, 메뉴 열기·닫기, 현재 페이지 표시 등
+        페이지 동작을 담당하는 JavaScript 파일을 불러옵니다.
+    -->
     <script src="js/script.js"></script>
 </body>
 </html>

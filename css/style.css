@@ -4,10 +4,12 @@
     box-sizing: border-box;
 }
 
+/* 페이지 안의 앵커 링크로 이동할 때 부드럽게 스크롤합니다. */
 html {
     scroll-behavior: smooth;
 }
 
+/* 사이트 전체의 기본 여백, 배경색, 글자색과 글꼴을 설정합니다. */
 body {
     margin: 0;
     min-height: 100vh;
@@ -21,19 +23,23 @@ body {
         sans-serif;
 }
 
+/* 사이드바가 열린 동안 뒤쪽 본문이 스크롤되지 않도록 막습니다. */
 body.menu-open {
     overflow: hidden;
 }
 
+/* 모든 링크의 기본 밑줄을 없애고 부모 요소의 글자색을 사용합니다. */
 a {
     color: inherit;
     text-decoration: none;
 }
 
+/* 버튼이 사이트 기본 글꼴을 그대로 사용하도록 설정합니다. */
 button {
     font: inherit;
 }
 
+/* 이미지 아래쪽의 불필요한 인라인 여백을 없애고 영역 밖으로 넘치지 않게 합니다. */
 img {
     display: block;
     max-width: 100%;
@@ -42,6 +48,7 @@ img {
 
 /* 공통 사이드바 컴포넌트 영역 */
 
+/* 삽입된 사이드바가 별도의 쌓임 맥락을 만들지 않도록 일반 흐름에 둡니다. */
 #sidebarComponent {
     position: static;
 }
@@ -49,6 +56,7 @@ img {
 
 /* 공통 컴포넌트 불러오기 오류 */
 
+/* sidebar.html을 불러오지 못했을 때 표시할 오류 안내 상자입니다. */
 .component-error-message {
     width: min(100% - 32px, 600px);
     margin: 24px auto;
@@ -68,6 +76,7 @@ img {
 
 /* 상단 헤더 */
 
+/* 화면 상단에 고정되는 공통 헤더의 크기와 배치를 설정합니다. */
 .site-header {
     position: sticky;
     top: 0;
@@ -88,6 +97,7 @@ img {
     -webkit-backdrop-filter: blur(10px);
 }
 
+/* 헤더 가운데에 있는 사이트 제목의 글자 스타일입니다. */
 .site-title {
     justify-self: center;
 
@@ -96,6 +106,7 @@ img {
     letter-spacing: 0.5px;
 }
 
+/* 메뉴 버튼과 닫기 버튼이 동일한 원형 아이콘 버튼 형태를 사용합니다. */
 .icon-button,
 .close-button {
     display: flex;
@@ -119,11 +130,13 @@ img {
         transform 0.2s ease;
 }
 
+/* 마우스를 올렸을 때 아이콘 버튼의 배경을 살짝 강조합니다. */
 .icon-button:hover,
 .close-button:hover {
     background-color: #eeeeef;
 }
 
+/* 버튼을 누르는 순간 조금 작아지는 피드백을 제공합니다. */
 .icon-button:active,
 .close-button:active {
     transform: scale(0.94);
@@ -132,6 +145,7 @@ img {
 
 /* 키보드 사용자를 위한 포커스 표시 */
 
+/* 키보드로 이동 중인 요소가 분명하게 보이도록 포커스 테두리를 표시합니다. */
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
@@ -146,6 +160,7 @@ summary:focus-visible {
 
 /* 왼쪽 사이드바 */
 
+/* 화면 왼쪽 밖에 숨겨 두었다가 open 클래스가 붙으면 나타나는 사이드바입니다. */
 .sidebar {
     position: fixed;
     top: 0;
@@ -172,11 +187,13 @@ summary:focus-visible {
     visibility: hidden; */
 }
 
+/* JavaScript가 open 클래스를 추가했을 때 사이드바를 화면 안으로 이동시킵니다. */
 .sidebar.open {
     transform: translateX(0);
     visibility: visible;
 }
 
+/* 사이드바 상단의 제목과 닫기 버튼 영역을 스크롤 중에도 고정합니다. */
 .sidebar-header {
     position: sticky;
     top: 0;
@@ -206,10 +223,12 @@ summary:focus-visible {
     line-height: 1;
 }
 
+/* 사이드바 안의 전체 메뉴 목록에 여백을 적용합니다. */
 .sidebar-navigation {
     padding: 14px 16px 40px;
 }
 
+/* Home 링크와 각 대분류 제목의 공통 버튼형 스타일입니다. */
 .sidebar-main-link,
 .sidebar-navigation summary {
     display: block;
@@ -235,6 +254,7 @@ summary:focus-visible {
     background-color: #f3f3f5;
 }
 
+/* 각 대분류 메뉴 사이를 구분선으로 나눕니다. */
 .sidebar-navigation details {
     border-bottom: 1px solid #eeeeee;
 }
@@ -248,6 +268,7 @@ summary:focus-visible {
     display: none;
 }
 
+/* 접힌 대분류 오른쪽에 펼치기 기호를 표시합니다. */
 .sidebar-navigation summary::after {
     content: "＋";
 
@@ -258,14 +279,17 @@ summary:focus-visible {
     font-weight: 400;
 }
 
+/* 대분류가 펼쳐졌을 때 펼치기 기호를 접기 기호로 바꿉니다. */
 .sidebar-navigation details[open] > summary::after {
     content: "−";
 }
 
+/* 펼쳐진 대분류 안의 세부 링크 영역에 들여쓰기를 적용합니다. */
 .sidebar-submenu {
     padding: 0 8px 14px 18px;
 }
 
+/* 세부 메뉴 안에서 중분류 제목을 작은 대문자형 라벨로 표시합니다. */
 .sidebar-submenu strong {
     display: block;
 
@@ -281,6 +305,7 @@ summary:focus-visible {
     text-transform: uppercase;
 }
 
+/* 세부 페이지 링크를 한 줄 전체를 누를 수 있는 메뉴 항목으로 만듭니다. */
 .sidebar-submenu a {
     display: block;
 
@@ -308,6 +333,7 @@ summary:focus-visible {
 
 /* 현재 보고 있는 사이드바 페이지 */
 
+/* 현재 보고 있는 페이지와 일치하는 사이드바 링크를 강조합니다. */
 .sidebar-navigation a.is-current {
     background-color: #202124;
     color: #ffffff;
@@ -322,6 +348,7 @@ summary:focus-visible {
 
 /* 사이드바 뒤의 어두운 화면 */
 
+/* 사이드바가 열렸을 때 본문 전체를 덮는 반투명 어두운 배경입니다. */
 .page-overlay {
     position: fixed;
     inset: 0;
@@ -345,6 +372,7 @@ summary:focus-visible {
         visibility 0.3s ease;
 }
 
+/* JavaScript가 show 클래스를 추가하면 오버레이를 보이고 클릭 가능하게 합니다. */
 .page-overlay.show {
     opacity: 1;
     visibility: visible;
@@ -354,6 +382,7 @@ summary:focus-visible {
 
 /* 메인 배너 */
 
+/* 메인 화면 상단의 큰 소개 배너를 중앙 정렬합니다. */
 .main-banner {
     display: flex;
     align-items: center;
@@ -373,6 +402,7 @@ summary:focus-visible {
     text-align: center;
 }
 
+/* 배너 안쪽 콘텐츠의 최대 너비를 제한해 글이 지나치게 넓어지지 않게 합니다. */
 .banner-content {
     width: 100%;
     max-width: 720px;
@@ -405,6 +435,7 @@ summary:focus-visible {
 
 /* 메인 콘텐츠 */
 
+/* 실제 카테고리 카드가 들어가는 본문 영역의 최대 너비와 여백입니다. */
 .main-content {
     width: min(1160px, calc(100% - 40px));
     margin: 0 auto;
@@ -415,6 +446,7 @@ summary:focus-visible {
     width: 100%;
 }
 
+/* 섹션 제목 영역의 정렬과 아래쪽 간격을 설정합니다. */
 .section-heading {
     display: flex;
     align-items: flex-end;
@@ -443,12 +475,14 @@ summary:focus-visible {
 
 /* 카테고리 카드 */
 
+/* 대분류 카드를 기본 3열 그리드로 배치합니다. */
 .category-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
+/* 각 대분류 이동 링크를 카드 형태로 꾸밉니다. */
 .category-card {
     display: flex;
     flex-direction: column;
@@ -471,6 +505,7 @@ summary:focus-visible {
         border-color 0.2s ease;
 }
 
+/* 카테고리 카드에 사용할 16:9 대표 이미지 크기와 모양입니다. */
 .category-card-image {
     width: 100%;
     max-width: 240px;
@@ -480,6 +515,7 @@ summary:focus-visible {
     margin-bottom: 18px;
 }
 
+/* 카드에 마우스를 올렸을 때 위로 떠오르는 효과를 줍니다. */
 .category-card:hover {
     transform: translateY(-6px);
 
@@ -491,6 +527,7 @@ summary:focus-visible {
     transform: translateY(-2px);
 }
 
+/* 카테고리별 이모지를 원형 배경 안에 배치합니다. */
 .category-icon {
     display: flex;
     align-items: center;
@@ -524,12 +561,14 @@ summary:focus-visible {
     width: 100%;
 }
 
+/* 세부 콘텐츠 카드를 기본 3열 그리드로 배치합니다. */
 .content-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
+/* 영상이나 자료 목록에서 사용할 공통 콘텐츠 카드입니다. */
 .content-card {
     display: block;
 
@@ -553,6 +592,7 @@ summary:focus-visible {
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
 }
 
+/* 콘텐츠 카드 대표 이미지를 16:9 비율로 표시합니다. */
 .content-card-image {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -562,6 +602,7 @@ summary:focus-visible {
     object-fit: cover;
 }
 
+/* 콘텐츠 카드에서 제목과 설명이 들어가는 내부 여백입니다. */
 .content-card-body {
     padding: 18px;
 }
@@ -585,6 +626,7 @@ summary:focus-visible {
 
 /* 데이터가 없을 때 표시할 공통 메시지 */
 
+/* 아직 등록된 데이터가 없을 때 그리드 전체 너비로 안내 문구를 표시합니다. */
 .empty-message {
     grid-column: 1 / -1;
 
@@ -605,6 +647,7 @@ summary:focus-visible {
 
 /* 태블릿 화면 */
 
+/* 태블릿 이하 화면에서는 콘텐츠 카드 수와 배너 높이를 줄입니다. */
 @media (max-width: 800px) {
     .main-banner {
         min-height: 350px;
@@ -618,6 +661,7 @@ summary:focus-visible {
 
 /* 모바일 화면 */
 
+/* 모바일 화면에 맞춰 헤더, 사이드바, 카드와 글자 크기를 축소합니다. */
 @media (max-width: 520px) {
     .site-header {
         grid-template-columns: 44px 1fr 44px;
@@ -757,6 +801,7 @@ summary:focus-visible {
 
 /* 매우 작은 모바일 화면 */
 
+/* 매우 좁은 모바일 화면에서 카드와 제목을 한 단계 더 작게 조정합니다. */
 @media (max-width: 360px) {
     .site-title {
         font-size: 16px;
@@ -787,6 +832,7 @@ summary:focus-visible {
 
 /* 애니메이션을 줄이도록 설정한 사용자 지원 */
 
+/* 움직임 감소 설정을 사용하는 방문자에게 애니메이션을 최소화합니다. */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
