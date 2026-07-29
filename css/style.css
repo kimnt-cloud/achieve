@@ -43,8 +43,7 @@ img {
 /* 공통 사이드바 컴포넌트 영역 */
 
 #sidebarComponent {
-    position: relative;
-    z-index: 200;
+    position: static;
 }
 
 
@@ -169,8 +168,8 @@ summary:focus-visible {
     transition:
         transform 0.3s ease,
         visibility 0.3s ease;
-
-    visibility: hidden;
+/* 
+    visibility: hidden; */
 }
 
 .sidebar.open {
@@ -335,7 +334,7 @@ summary:focus-visible {
     background-color: rgba(0, 0, 0, 0.48);
     border: none;
 
-    cursor: pointer;
+    /* cursor: pointer; */
 
     opacity: 0;
     visibility: hidden;
